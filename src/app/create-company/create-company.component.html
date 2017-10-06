@@ -1,0 +1,79 @@
+<h1>Add business</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="company">Company:</label>
+        <input type="company" class="form-control" id="company" formControlName="company" />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" class="form-control" id="category" formControlName="category" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="years">Years in business:</label>
+        <input type="number" class="form-control" id="years" min="1" formControlName="years" />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" rows="5" formControlName="description"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" class="form-control" id="phone" formControlName="phone" />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" formControlName="email" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="street">Street address:</label>
+        <input type="text" class="form-control" id="street" formControlName="street" />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="city" class="form-control" id="city" formControlName="city" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" class="form-control" id="state" formControlName="state" />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="zip-code">Zip code:</label>
+        <input type="text" class="form-control" id="zip-code" formControlName="zipCode" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <!--<button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>-->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,35 @@
+<!-- TODO show empty when company null -->
+<div class="container" *ngIf="company">
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-danger" (click)="closeDetail()">Back</button>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row">
+      <h1>{{ company.detail.name }}</h1>
+    </div>
+    <div class="row">
+      Category: {{ company.detail.category }}
+    </div>
+    <div class="row">
+      Years in business: {{ company.years }}
+    </div>
+    <div class="row">
+      <p>{{ company.description }}</p>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row">
+      <h2>Contact info</h2>
+        <ul>
+          <li>Phone: {{ company.detail.phone }}</li>
+          <li>Email: {{ company.email }}</li>
+          <li>Street: {{ company.address.street }}</li>
+          <li>City: {{ company.address.city }}</li>
+          <li>State: {{ company.address.state }}</li>
+          <li>Zipcode: {{ company.address.zipCode }}</li>
+        </ul>
+    </div>
+  </div>
+</div>
