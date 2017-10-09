@@ -1,8 +1,10 @@
+import { CompanyListItem } from './../company-list-item';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { CompanyService } from './../company.service';
 import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from '@angular/core';
 import { Company } from 'app/company';
+import { Address } from 'app/address';
 
 @Component({
   selector: 'app-company-edit',
@@ -15,6 +17,8 @@ export class CompanyEditComponent implements OnInit, OnDestroy {
   form:FormGroup;
   @Output('closeEdit')
   closeEditEmitter = new EventEmitter<void>();
+  @Output()
+  companyEdited = new EventEmitter();
 
   constructor(private companyService:CompanyService, private fb:FormBuilder) {
     this.form = fb.group({
@@ -36,6 +40,7 @@ export class CompanyEditComponent implements OnInit, OnDestroy {
       this.companyService.getCompany(companyId).then(company => {
         if (company && company.val()) {
           this.company = company.val().company;
+          this.company.detail.id = companyId;
 
           this.form.controls['company'].setValue(this.company.detail.name);
           this.form.controls['category'].setValue(this.company.detail.category);
@@ -59,7 +64,21 @@ export class CompanyEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(event) {
-    console.log('xxx');
+    let detail = new CompanyListItem(
+      this.company.detail.id,
+      this.form.value.company,
+      this.form.value.category,
+      this.form.value.phone
+    );
+    let address = new Address(
+      this.form.value.street,
+      this.form.value.city,
+      this.form.value.state,
+      this.form.value.zipCode
+    );
+    let company = new Company(detail, address, this.form.value.email, this.form.value.description, this.form.value.years);
+    this.companyService.updateCompany(company);
+    this.companyEdited.emit(event);
   }
 
   closeEdit() {

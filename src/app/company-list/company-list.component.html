@@ -5,7 +5,7 @@
   <button class="btn btn-primary" (click)="toggleShowNew()" *ngIf="!showDetail">Add Business</button>
   <app-create-company [hidden]="!showNew" (companyCreated)="onCompanyCreated($event)"></app-create-company>
   <app-company-detail [hidden]="!showDetail" [companyIdSubject]="selectedCompanyId" (closeDetail)="onCloseDetail()"></app-company-detail>
-  <app-company-edit [hidden]="!showEdit" [companyIdSubject]="selectedCompanyId" (closeDetail)="onCloseEdit()"></app-company-edit>
+  <app-company-edit [hidden]="!showEdit" [companyIdSubject]="selectedCompanyId" (closeEdit)="onCloseEdit()" (companyEdited)="onCompanyEdited($event)"></app-company-edit>
   <table class="table table-striped">
     <thead>
       <tr>

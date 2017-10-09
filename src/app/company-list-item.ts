@@ -1,6 +1,6 @@
 export class CompanyListItem {
     constructor(
-        public id:number,
+        public id:string,
         public name:string,
         public category:string,
         public phone:string 

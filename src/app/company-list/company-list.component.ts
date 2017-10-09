@@ -17,6 +17,7 @@ export class CompanyListComponent implements OnInit {
   showDetail = false;
   showEdit = false;
   showCreatedNewSuccessMsg = false;
+  showEditedSuccessMsg = false;
   selectedCompanyId:Subject<string> = new Subject();
 
   constructor(private companyService:CompanyService) { }
@@ -27,15 +28,22 @@ export class CompanyListComponent implements OnInit {
 
   toggleShowNew() {
     this.showNew = !this.showNew;
+    this.showDetail = false;
+    this.showEdit = false;
   }
 
   toggleShowDetail(id:string) {
     this.showDetail = true;
     this.selectedCompanyId.next(id);
+    this.showEdit = false;
+    this.showNew = false;
   }
 
   toggleShowEdit(id:string) {
     this.showEdit = true;
+    this.selectedCompanyId.next(id);
+    this.showNew = false;
+    this.showDetail = false;
   }
 
   onCloseDetail() {
@@ -45,8 +53,6 @@ export class CompanyListComponent implements OnInit {
   onCloseEdit() {
     this.showEdit = false;
   }
-
-  editCompany(id:number) {}
 
   deleteCompany(id:string) {
     if (confirm('Do you really want to delete the selected item?')) {
@@ -60,6 +66,15 @@ export class CompanyListComponent implements OnInit {
     this.showNew = false;
     setTimeout(() => {
       this.showCreatedNewSuccessMsg = false;
+    }, 3000);
+    this.loadCompanies();
+  }
+
+  onCompanyEdited(event) {
+    this.showEditedSuccessMsg = true;
+    this.showEdit = false;
+    setTimeout(() => {
+      this.showEditedSuccessMsg = false;
     }, 3000);
     this.loadCompanies();
   }

@@ -29,4 +29,9 @@ export class CompanyService {
     return this.af.database.ref('companies/' + id).remove();
   }
 
+  updateCompany(company:Company) {
+    console.log(company);
+    this.af.database.ref('companies/' + company.detail.id + '/company').update(company);
+  }
+
 }
